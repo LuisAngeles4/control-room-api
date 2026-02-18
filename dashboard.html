@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>SmartStage IoT Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+body { overflow-x: hidden; }
+.sidebar {
+  background: #111827;
+  color: white;
+  min-height: 100vh;
+}
+.sidebar a {
+  color: #cbd5e1;
+  text-decoration: none;
+  display: block;
+  padding: 12px;
+}
+.sidebar a:hover {
+  background: #1f2937;
+  color: white;
+}
+.card-kpi {
+  border-left: 5px solid #0d6efd;
+}
+</style>
+</head>
+
+<body class="bg-light">
+
+<div class="container-fluid">
+<div class="row">
+
+<!-- SIDEBAR -->
+<div class="col-md-2 sidebar p-3">
+<h4>Control Room</h4>
+<hr>
+<a href="#kpis">Resumen</a>
+<a href="#control">Control</a>
+<a href="#monitor">Monitoreo</a>
+</div>
+
+<!-- MAIN -->
+<div class="col-md-10 p-4">
+
+<h2 class="mb-4">Dashboard IoT Musical</h2>
+
+<!-- KPIs -->
+<div class="row mb-4" id="kpis">
+
+<div class="col-md-4">
+<div class="card card-kpi shadow">
+<div class="card-body">
+<h6>Dispositivos Activos</h6>
+<h3 id="activeCount">0</h3>
+</div>
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="card card-kpi shadow">
+<div class="card-body">
+<h6>Consumo Total (W)</h6>
+<h3 id="totalPower">0</h3>
+</div>
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="card card-kpi shadow">
+<div class="card-body">
+<h6>Eventos Registrados</h6>
+<h3 id="totalLogs">0</h3>
+</div>
+</div>
+</div>
+
+</div>
+
+<!-- CONTROL -->
+<div class="d-flex justify-content-between align-items-center mb-3">
+<h4 id="control">🎚 Control de Dispositivos</h4>
+<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deviceModal">
++ Nuevo Dispositivo
+</button>
+</div>
+
+<div class="row mb-5" id="deviceCards"></div>
+
+<!-- MONITOR -->
+<h4 id="monitor">📊 Monitoreo</h4>
+<div id="charts"></div>
+
+<h5 class="mt-4">Últimos Eventos</h5>
+<table class="table table-striped">
+<thead class="table-dark">
+<tr>
+<th>Dispositivo</th>
+<th>Evento</th>
+<th>Estado</th>
+<th>Nivel (%)</th>
+<th>Hora</th>
+</tr>
+</thead>
+<tbody id="logTable"></tbody>
+</table>
+
+</div>
+</div>
+</div>
+
+<!-- MODAL -->
+<div class="modal fade" id="deviceModal" tabindex="-1">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<h5 class="modal-title">Dispositivo IoT</h5>
+<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+</div>
+
+<div class="modal-body">
+
+<input type="hidden" id="deviceId">
+
+<div class="mb-3">
+<label>Nombre</label>
+<input type="text" id="deviceName" class="form-control">
+<div class="form-text">Nombre identificador del dispositivo.</div>
+</div>
+
+<div class="mb-3">
+<label>Tipo</label>
+<select id="deviceType" class="form-control">
+<option value="luz">Luz</option>
+<option value="audio">Audio</option>
+<option value="sensor">Sensor</option>
+<option value="efecto">Efecto</option>
+</select>
+<div class="form-text">Categoría funcional.</div>
+</div>
+
+<div class="mb-3">
+<label>Modo</label>
+<select id="deviceMode" class="form-control">
+<option value="manual">Manual</option>
+<option value="automatico">Automático</option>
+<option value="eco">Eco</option>
+<option value="show">Show</option>
+</select>
+<div class="form-text">Modo de operación.</div>
+</div>
+
+<div class="mb-3">
+<label>Consumo Base (W)</label>
+<input type="number" id="devicePower" class="form-control">
+<div class="form-text">Consumo energético estimado.</div>
+</div>
+
+</div>
+
+<div class="modal-footer">
+<button class="btn btn-success" onclick="saveDevice()">Guardar</button>
+</div>
+
+</div>
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/dashboard.js"></script>
+
+</body>
+</html>

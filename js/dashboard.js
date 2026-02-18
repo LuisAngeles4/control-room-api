@@ -177,7 +177,7 @@ async function registerEvent(device, eventName) {
 
   const logs = device.logs ? [...device.logs, newLog] : [newLog];
 
-  if (logs.length > 20) logs.shift();
+  if (logs.length > 10) logs.shift();
 
   await fetch(`${API_URL}/${device.id}`, {
     method: "PUT",
@@ -224,10 +224,21 @@ function renderMonitor(devices) {
   chartsContainer.innerHTML = "";
   logTable.innerHTML = "";
 
+  let allLogs = [];
+
   devices.forEach(device => {
 
     if (!device.logs || device.logs.length === 0) return;
 
+    // 🔹 Agregar logs al arreglo global
+    device.logs.forEach(log => {
+      allLogs.push({
+        deviceName: device.name,
+        ...log
+      });
+    });
+
+    // 🔹 GRAFICA (mantiene últimos 10 por dispositivo)
     const lastLogs = device.logs.slice(-10);
 
     const card = document.createElement("div");
@@ -266,20 +277,29 @@ function renderMonitor(devices) {
       }
     });
 
-    lastLogs.forEach(log => {
-      logTable.innerHTML += `
-        <tr>
-          <td>${device.name}</td>
-          <td>${log.event}</td>
-          <td>${log.status}</td>
-          <td>${log.value}</td>
-          <td>${new Date(log.timestamp).toLocaleTimeString()}</td>
-        </tr>
-      `;
-    });
-
   });
+
+  // 🔥 ORDENAR TODOS LOS LOGS POR FECHA (más reciente primero)
+  allLogs.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+
+  // 🔥 TOMAR SOLO LOS 10 MÁS RECIENTES
+  const lastTenGlobal = allLogs.slice(0, 10);
+
+  // 🔥 RENDERIZAR SOLO ESOS 10
+  lastTenGlobal.forEach(log => {
+    logTable.innerHTML += `
+      <tr>
+        <td>${log.deviceName}</td>
+        <td>${log.event}</td>
+        <td>${log.status}</td>
+        <td>${log.value}</td>
+        <td>${new Date(log.timestamp).toLocaleTimeString()}</td>
+      </tr>
+    `;
+  });
+
 }
+
 
 /* ================= REFRESCO 2 SEG ================= */
 

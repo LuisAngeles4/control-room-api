@@ -1,10 +1,10 @@
-# 🎸 IoT Smart Rehearsal Room
+#  IoT Smart Rehearsal Room
 
 Aplicación Web IoT para el monitoreo y control de un cuarto de ensayo musical.
 
 ---
 
-## 📌 Descripción
+##  Descripción
 
 Este proyecto consiste en el desarrollo de una solución IoT que permite administrar, controlar y monitorear dispositivos instalados en un cuarto de ensayo musical mediante una arquitectura basada en API REST utilizando MockAPI como base de datos simulada.
 
@@ -20,7 +20,7 @@ La aplicación permite:
 
 ---
 
-## 🏗 Arquitectura
+##  Arquitectura
 
 Frontend:
 - HTML
@@ -34,27 +34,27 @@ Backend:
 
 ---
 
-## ⚙️ Funcionalidades
+## Funcionalidades
 
-### 🔹 Administración de dispositivos
+###  Administración de dispositivos
 - CRUD completo
 - Gestión mediante modales
 - Validación de datos
 
-### 🔹 Control del cuarto
+###  Control del cuarto
 - Interruptor ON/OFF
 - Control de nivel
 - Indicador visual de estado
 - Registro automático de eventos
 
-### 🔹 Monitoreo en tiempo real
+###  Monitoreo en tiempo real
 - Gráfica por dispositivo
 - Tabla con los últimos 10 eventos
 - Refresco automático cada 2 segundos
 
 ---
 
-## 🧠 Tipos de dispositivos
+##  Tipos de dispositivos
 
 - Luz
 - Audio
@@ -63,7 +63,7 @@ Backend:
 
 ---
 
-## 🎛 Modos de operación
+##  Modos de operación
 
 - Manual
 - Automático
@@ -72,7 +72,7 @@ Backend:
 
 ---
 
-## 📊 Reglas de negocio
+## Reglas de negocio
 
 - Deben existir al menos 3 dispositivos.
 - No se puede modificar el nivel si el dispositivo está apagado.
@@ -82,7 +82,7 @@ Backend:
 
 ---
 
-## 🚀 Cómo ejecutar el proyecto
+##  Cómo ejecutar el proyecto
 
 1. Clonar el repositorio.
 2. Configurar la URL de MockAPI en el archivo JS.
@@ -90,13 +90,13 @@ Backend:
 
 ---
 
-## 🎯 Objetivo
+##  Objetivo
 
 Simular un sistema IoT inteligente para la gestión y monitoreo de un cuarto de ensayo musical, integrando administración, control y supervisión en tiempo real.
 
 ---
 
-## 👨‍💻 Autor
+##  Autor
 
 Luis Angeles
 
